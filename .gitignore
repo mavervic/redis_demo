@@ -30,6 +30,7 @@ hs_err_pid*
 *.project
 *.classpath
 .settings/
+bin/
 
 # NetBeans
 nbproject/
