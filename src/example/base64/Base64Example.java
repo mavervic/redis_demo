@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+/**
+ * @ref 線上 Base64 預覽工具 https://codebeautify.org/base64-to-image-converter
+ */
 public class Base64Example {
 
 	public static void main(String[] args) throws IOException {
