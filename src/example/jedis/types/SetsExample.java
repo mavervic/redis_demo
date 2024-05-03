@@ -11,7 +11,7 @@ public class SetsExample {
 		JedisPooled jedis = RedisUtils.getJedisPooled();
 
 		/*
-		 * 存放法國和美國比賽的自行車組。請注意，如果您新增已存在的成員，它將被忽略。
+		 * 存放法國和美國比賽的自行車組。如果新增已存在的成員將被忽略。
 		 */
 		long res1 = jedis.sadd("bikes:racing:france", "bike:1");
 		System.out.println(res1); // >>> 1
@@ -57,7 +57,7 @@ public class SetsExample {
 		 */
 		jedis.sadd("bikes:racing:france", "bike:1", "bike:2", "bike:3");
 
-		long res8 = jedis.scard("bikes:racing:france");
+		long res8 = jedis.scard("bikes:racing:france"); // return the set cardinality (number of elements) 
 		System.out.println(res8); // >>> 3
 
 		
