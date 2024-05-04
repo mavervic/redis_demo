@@ -148,11 +148,11 @@ public class SetsExample {
 
 		// spop 會從一個集合中隨機選擇一個元素，並確保同一個元素不會被選擇兩次。例如，可以用它來實現一個隨機抽獎系統。
 		String res21 = jedis.spop("bikes:racing:france");
-		System.out.println(res21); // >>> bike:3
+		System.out.println(res21); // >>> bike:???
 
 		// srandmember 會從 Set 中隨機返回一個元素，但不會移除該元素。例如，可以用它來實現一個隨機推薦系統，每次都從一個產品集合中隨機選擇一個產品來推薦給使用者。
 		String res22 = jedis.srandmember("bikes:racing:france");
-		System.out.println(res22); // >>> bike:4
+		System.out.println(res22); // >>> bike:???
 
 	}
 }
