@@ -60,6 +60,7 @@ public class SetsExample {
 		long res8 = jedis.scard("bikes:racing:france"); // return the set cardinality (number of elements) 
 		System.out.println(res8); // >>> 3
 
+
 		
 		/*
 		 * 取得Sets所有成員
@@ -93,6 +94,7 @@ public class SetsExample {
 		System.out.println(res13); // >>> [bike:2, bike:3]
 
 		
+
 		/*
 		 * 交集: 取得哪些自行車同時有在法國、美國、義大利比賽
 		 */
@@ -103,12 +105,15 @@ public class SetsExample {
 		Set<String> res14 = jedis.sinter("bikes:racing:france", "bikes:racing:usa", "bikes:racing:italy");
 		System.out.println(res14); // >>> [bike:1]
 
+
 		
 		/*
 		 * 並集: 取得法國、美國、義大利比賽中出現過哪些自行車
 		 */
 		Set<String> res15 = jedis.sunion("bikes:racing:france", "bikes:racing:usa", "bikes:racing:italy");
 		System.out.println(res15); // >>> [bike:1, bike:2, bike:3, bike:4]
+
+
 
 		/*
 		 * 差集: 請注意先後順序
@@ -121,20 +126,31 @@ public class SetsExample {
 		System.out.println(res18); // >>> [bike:2, bike:3]
 		
 		
+		
 		/*
 		 * 從集合中刪除成員
 		 */
 		jedis.sadd("bikes:racing:france", "bike:1", "bike:2", "bike:3", "bike:4", "bike:5");
 
-		long res19 = jedis.srem("bikes:racing:france", "bike:1");
+		long res19 = jedis.srem("bikes:racing:france", "bike:1"); // 刪除特定成員
 		System.out.println(res19); // >>> 1
 
-		String res20 = jedis.spop("bikes:racing:france");
-		System.out.println(res20); // >>> bike:3
+		Set<String> res20 = jedis.smembers("bikes:racing:france"); // 刪除所有成員，等同於刪除這個 key
+		System.out.println(res20); // >>> [bike:5, bike:2, bike:3, bike:4]
 
-		Set<String> res21 = jedis.smembers("bikes:racing:france");
-		System.out.println(res21); // >>> [bike:2, bike:4, bike:5]
 
+
+
+		/*
+		 * 從集合中隨機取出成員
+		 */
+		jedis.sadd("bikes:racing:france", "bike:1", "bike:2", "bike:3", "bike:4", "bike:5");
+
+		// spop 會從一個集合中隨機選擇一個元素，並確保同一個元素不會被選擇兩次。例如，可以用它來實現一個隨機抽獎系統。
+		String res21 = jedis.spop("bikes:racing:france");
+		System.out.println(res21); // >>> bike:3
+
+		// srandmember 會從 Set 中隨機返回一個元素，但不會移除該元素。例如，可以用它來實現一個隨機推薦系統，每次都從一個產品集合中隨機選擇一個產品來推薦給使用者。
 		String res22 = jedis.srandmember("bikes:racing:france");
 		System.out.println(res22); // >>> bike:4
 
