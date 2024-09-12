@@ -7,24 +7,34 @@ public class RedisUtils {
 	private RedisUtils() {
 	}
 
-	public static JedisPooled getJedisPooled() {
-		return new JedisPooled("localhost", 6379, null, "mypassword");
+	// 一個內部類別，保證JedisPooled的單例，並具備懶加載的特性
+	private static class JedisPooledHolder {
+		private static String url = "localhost";
+		private static int port = 6379;
+		private static String user = null;
+		private static String password = "mypassword";
+		private static final JedisPooled jedisPooled = new JedisPooled(url, port, user, password);
 	}
 
-	public static void delAll() {
-		JedisPooled jedis = getJedisPooled();
-		var keysSet = jedis.keys("*");
-		if(keysSet.size() == 0) {
-			System.out.println("目前Redis為空，沒有需要清理");
-			return;
-		}
-		var keysStr = keysSet.toArray(String[]::new);
-		long deled = jedis.del(keysStr);
-		System.out.println("一共清理了" + deled + "個keys");
+	/**
+	 * 獲取JedisPooled的單例
+	 */
+	public static JedisPooled getJedisPooled() {
+		return JedisPooledHolder.jedisPooled;
+	}
+
+	/**
+	 * 獲取新的自增鍵
+	 */
+	public static String getAutoIncreamentKey(JedisPooled jedisPooled, String key) {
+		String newKey = String.valueOf(jedisPooled.incr(key));
+		return newKey;
 	}
 
 	public static void main(String[] args) {
-		delAll();
+		JedisPooled jedisPooled = RedisUtils.getJedisPooled();
+		String key = RedisUtils.getAutoIncreamentKey(jedisPooled, "seq");
+		System.out.println(key);
 	}
 
 }
