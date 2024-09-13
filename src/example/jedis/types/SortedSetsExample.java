@@ -15,19 +15,19 @@ public class SortedSetsExample {
 		/*
 		 * 添加賽車手們在第一場比賽中獲得的分數
 		 */
-		long res1 = jedis.zadd("racer_scores", 10d, "Norem");
+		long res1 = jedis.zadd("racer_scores", 10D, "Norem");
 		System.out.println(res1); // >>> 1
 
-		long res2 = jedis.zadd("racer_scores", 12d, "Castilla");
+		long res2 = jedis.zadd("racer_scores", 12D, "Castilla");
 		System.out.println(res2); // >>> 1
 
 		long res3 = jedis.zadd("racer_scores", new HashMap<String, Double>() {
 			{
-				put("Sam-Bodden", 8d);
-				put("Royce", 10d);
-				put("Ford", 6d);
-				put("Prickett", 14d);
-				put("Castilla", 12d);
+				put("Sam-Bodden", 8D);
+				put("Royce", 10D);
+				put("Ford", 6D);
+				put("Prickett", 14D);
+				put("Castilla", 12D);
 			}
 		});
 		System.out.println(res3); // >>> 4
@@ -58,7 +58,7 @@ public class SortedSetsExample {
 		/*
 		 * 取得 -無限小 ~ 10分的選手們
 		 */
-		List<String> res7 = jedis.zrangeByScore("racer_scores", Double.MIN_VALUE, 10d);
+		List<String> res7 = jedis.zrangeByScore("racer_scores", Double.MIN_VALUE, 10D);
 		System.out.println(res7); // >>> [Ford, Sam-Bodden, Norem, Royce]
 
 		
@@ -69,7 +69,7 @@ public class SortedSetsExample {
 		long res8 = jedis.zrem("racer_scores", "Castilla");
 		System.out.println(res8); // >>> 1
 
-		long res9 = jedis.zremrangeByScore("racer_scores", Double.MIN_VALUE, 9d);
+		long res9 = jedis.zremrangeByScore("racer_scores", Double.MIN_VALUE, 9D);
 		System.out.println(res9); // >>> 2
 
 		List<String> res10 = jedis.zrange("racer_scores", 0, -1);
@@ -91,13 +91,13 @@ public class SortedSetsExample {
 		 */
 		long res13 = jedis.zadd("lexicographical_scores", new HashMap<String, Double>() {
 			{
-				put("a", 0d);
-				put("e", 0d);
-				put("A", 0d);
-				put("d", 0d);
-				put("b", 0d);
-				put("c", 0d);
-				put("aAa", 0d);
+				put("a", 0D);
+				put("e", 0D);
+				put("A", 0D);
+				put("d", 0D);
+				put("b", 0D);
+				put("c", 0D);
+				put("aAa", 0D);
 			}
 		});
 		System.out.println(res13); // >>> 7
@@ -121,16 +121,16 @@ public class SortedSetsExample {
 		 * 
 		 * 反過來說，如果我們只知道得分不知道總分，則我們可以使用ZINCRBY命令。
 		 */
-		long res16 = jedis.zadd("fb_game_scores", 100d, "Wood");
+		long res16 = jedis.zadd("fb_game_scores", 100D, "Wood");
 		System.out.println(res16); // >>> 1
-		long res17 = jedis.zadd("fb_game_scores", 100d, "Henshaw");
+		long res17 = jedis.zadd("fb_game_scores", 100D, "Henshaw");
 		System.out.println(res17); // >>> 1
-		long res18 = jedis.zadd("fb_game_scores", 100d, "Henshaw");
+		long res18 = jedis.zadd("fb_game_scores", 100D, "Henshaw");
 		System.out.println(res18); // >>> 0
 
-		double res19 = jedis.zincrby("fb_game_scores", 50d, "Wood");
+		double res19 = jedis.zincrby("fb_game_scores", 50D, "Wood");
 		System.out.println(res19); // >>> 150.0
-		double res20 = jedis.zincrby("fb_game_scores", 50d, "Henshaw");
+		double res20 = jedis.zincrby("fb_game_scores", 50D, "Henshaw");
 		System.out.println(res20); // >>> 200.0
 	}
 }
