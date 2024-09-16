@@ -1,6 +1,5 @@
 package example.json;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -64,43 +63,5 @@ public class MockDataUtils {
 		objContentArray.put("objArray", objArray);
 		return objContentArray;
 	}
-	
-	public static Person getPerson(String name, Integer age) {
-		Person person = new Person(name, age);
-		return person;
-	}
 
-	static class Person implements Serializable {
-		private static final long serialVersionUID = 1L;
-
-		public Person(String name, Integer age) {
-			super();
-			this.name = name;
-			this.age = age;
-		}
-
-		private String name;
-		private Integer age;
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public int getAge() {
-			return age;
-		}
-
-		public void setAge(Integer age) {
-			this.age = age;
-		}
-
-		@Override
-		public String toString() {
-			return "Person [name=" + name + ", age=" + age + "]";
-		}
-	}
 }

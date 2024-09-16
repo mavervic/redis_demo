@@ -3,16 +3,14 @@ package example.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import example.json.MockDataUtils.Person;
-
 public class PersonTest {
 
 	public static void main(String[] args) {
 		Gson gson = new Gson();
 
-		Person vic = MockDataUtils.getPerson("Vic", 10);
-		Person david = MockDataUtils.getPerson("David", 20);
-		Person peter = MockDataUtils.getPerson("Peter", null);
+		Person vic = new Person("Vic", 10);
+		Person david = new Person("David", 20);
+		Person peter = new Person("Peter", null);
 
 		// 把 Java 物件轉成 JSON 格式的字串
 		System.out.println(gson.toJson(vic)); // {"name":"Vic","age":10}
@@ -23,7 +21,7 @@ public class PersonTest {
 		System.out.println(gson.fromJson("{\"name\":\"Vic\",\"age\":10}", Person.class)); // Person [name=Vic, age=10]
 		System.out.println(gson.fromJson("{\"name\":\"David\",\"age\":20}", Person.class)); // Person [name=David, age=20]
 		System.out.println(gson.fromJson("{\"name\":\"Peter\"}", Person.class)); // Person [name=Peter, age=null]
-		
+
 		// 建立一個字串化必須含有null的gson物件
 		Gson gsonWillNull = new GsonBuilder().serializeNulls().create();
 		System.out.println(gson.toJson(peter)); // {"name":"Peter"}
