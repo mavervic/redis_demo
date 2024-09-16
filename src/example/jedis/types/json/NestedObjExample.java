@@ -1,4 +1,4 @@
-package example.jedis.json;
+package example.jedis.types.json;
 
 import redis.clients.jedis.JedisPooled;
 import redis.clients.jedis.json.Path2;

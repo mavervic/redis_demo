@@ -1,4 +1,4 @@
-package example.jedis.json;
+package example.jedis.types.json;
 
 import java.lang.reflect.Type;
 import java.time.Instant;

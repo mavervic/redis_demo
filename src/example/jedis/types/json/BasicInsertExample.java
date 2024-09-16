@@ -1,4 +1,4 @@
-package example.jedis.json;
+package example.jedis.types.json;
 
 import java.util.List;
 import java.util.Map;
