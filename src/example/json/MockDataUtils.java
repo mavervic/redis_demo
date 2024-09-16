@@ -2,7 +2,6 @@ package example.json;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ public class MockDataUtils {
 	}
 
 	public static Map<String, Object> getObj() {
-		Map<String, Object> obj = new LinkedHashMap<>();
+		Map<String, Object> obj = new HashMap<>();
 		obj.put("boolean_true", true);
 		obj.put("boolean_false", false);
 		obj.put("string", "hello world");
