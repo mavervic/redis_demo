@@ -7,7 +7,7 @@ import redis.clients.jedis.args.ListDirection;
 import utils.RedisUtils;
 
 /**
- * Redis 的 Lists 類似於 LinkedList，常用於隊列(queue)或堆棧(stack)
+ * https://redis.io/docs/latest/develop/data-types/lists/
  */
 public class ListExample {
 	public static void main(String[] args) {

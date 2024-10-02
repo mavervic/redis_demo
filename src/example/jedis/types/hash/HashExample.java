@@ -9,6 +9,9 @@ import com.google.gson.Gson;
 import redis.clients.jedis.JedisPooled;
 import utils.RedisUtils;
 
+/**
+ * https://redis.io/docs/latest/develop/data-types/hashes/
+ */
 public class HashExample {
 
 	public static void main(String[] args) {

@@ -7,6 +7,9 @@ import redis.clients.jedis.JedisPooled;
 import redis.clients.jedis.resps.Tuple;
 import utils.RedisUtils;
 
+/**
+ * https://redis.io/docs/latest/develop/data-types/sorted-sets/
+ */
 public class SortedSetsExample {
 	public static void main(String[] args) {
 		JedisPooled jedis = RedisUtils.getJedisPooled();

@@ -6,6 +6,9 @@ import java.util.Set;
 import redis.clients.jedis.JedisPooled;
 import utils.RedisUtils;
 
+/**
+ * https://redis.io/docs/latest/develop/data-types/sets/
+ */
 public class SetsExample {
 	public static void main(String[] args) {
 		JedisPooled jedis = RedisUtils.getJedisPooled();

@@ -8,7 +8,7 @@ import redis.clients.jedis.params.SetParams;
 import utils.RedisUtils;
 
 /**
- * 
+ * https://redis.io/docs/latest/develop/data-types/strings/
  */
 public class StringExample {
 	public static void main(String[] args) {
