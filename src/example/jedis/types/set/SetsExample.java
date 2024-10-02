@@ -138,7 +138,7 @@ public class SetsExample {
 		long res19 = jedis.srem("bikes:racing:france", "bike:1"); // 刪除特定成員
 		System.out.println(res19); // >>> 1
 
-		Set<String> res20 = jedis.smembers("bikes:racing:france"); // 刪除所有成員，等同於刪除這個 key
+		Set<String> res20 = jedis.smembers("bikes:racing:france");
 		System.out.println(res20); // >>> [bike:5, bike:2, bike:3, bike:4]
 
 

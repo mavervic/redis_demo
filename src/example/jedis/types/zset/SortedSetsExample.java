@@ -144,7 +144,7 @@ public class SortedSetsExample {
 
 		double res19 = jedis.zincrby("fb_game_scores", 50D, "Wood");
 		System.out.println(res19); // >>> 150.0
-		double res20 = jedis.zincrby("fb_game_scores", 50D, "Henshaw");
+		double res20 = jedis.zincrby("fb_game_scores", 100D, "Henshaw");
 		System.out.println(res20); // >>> 200.0
 	}
 }
