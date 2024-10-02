@@ -43,36 +43,6 @@ public class StringExample {
 		Long res8 = jedis.incrBy("total_crashes", 10);
 		System.out.println(res8); // 11
 
-		inventoryExample(jedis);
-		captchaExample(jedis);
-	}
-
-	public static void inventoryExample(JedisPooled jedis) {
-		jedis.set("inventory:bike:1", "10");
-		jedis.set("inventory:bike:2", "20");
-		jedis.set("inventory:bike:3", "30");
-
-		// 某客戶下單買了 bike:1 共 5 台，更新計算庫存
-		Long bike1Inventory = jedis.incrBy("inventory:bike:1", -5);
-		System.out.println(bike1Inventory);
-
-		// 某客戶下單買了 bike:2 共 3 台，更新計算庫存
-		Long bike2Inventory = jedis.incrBy("inventory:bike:2", -3);
-		System.out.println(bike2Inventory);
-
-		// 某客戶下單買了 bike:3 共 12 台，更新計算庫存
-		Long bike3Inventory = jedis.incrBy("inventory:bike:3", -12);
-		System.out.println(bike3Inventory);
-	}
-
-	public static void captchaExample(JedisPooled jedis) {
-		String captcha = UUID.randomUUID().toString().substring(0, 6);
-		System.out.println("驗證碼為" + captcha);
-		
-		// 設定1分鐘自動刪除這個captcha (網站通常設置300秒也就是5分鐘自動過期)
-		long expireSeconds = 60;
-		jedis.set("captcha:member:01", captcha);
-		jedis.expire("captcha:member:01", expireSeconds);
 	}
 
 }
