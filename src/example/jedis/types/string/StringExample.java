@@ -1,4 +1,4 @@
-package example.jedis.types;
+package example.jedis.types.string;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package example.jedis.types;
+package example.jedis.types.set;
 
 import java.util.List;
 import java.util.Set;

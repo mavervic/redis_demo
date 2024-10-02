@@ -1,4 +1,4 @@
-package example.jedis.types;
+package example.jedis.types.zset;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,32 +56,43 @@ public class SortedSetsExample {
 
 		
 		/*
-		 * 取得 -無限小 ~ 10分的選手們
+		 * 取得最小正整數 ~ 10分的選手們
 		 */
 		List<String> res7 = jedis.zrangeByScore("racer_scores", Double.MIN_VALUE, 10D);
 		System.out.println(res7); // >>> [Ford, Sam-Bodden, Norem, Royce]
 
 		
 		
-		/*
-		 * 篩選掉分數 -無限小 ~ 9分的選手們
+
+		/**
+		 * 移除掉 Castilla
 		 */
 		long res8 = jedis.zrem("racer_scores", "Castilla");
 		System.out.println(res8); // >>> 1
-
+		
+		/*
+		 * 篩選掉最小正整數 ~ 9分的選手們
+		 */
 		long res9 = jedis.zremrangeByScore("racer_scores", Double.MIN_VALUE, 9D);
 		System.out.println(res9); // >>> 2
 
+		/**
+		 * 查看篩選後的結果
+		 */
 		List<String> res10 = jedis.zrange("racer_scores", 0, -1);
 		System.out.println(res10); // >>> [Norem, Royce, Prickett]
 
 		
 		/*
-		 * 取得元素所在位置 (由前至後，或由後至前)
+		 * 取得元素所在位置 (由前至後)
 		 */
 		long res11 = jedis.zrank("racer_scores", "Norem");
 		System.out.println(res11); // >>> 0
 
+		
+		/*
+		 * 取得元素所在位置 (由後至前)，可以用在取得遊戲分數的排名
+		 */
 		long res12 = jedis.zrevrank("racer_scores", "Norem");
 		System.out.println(res12); // >>> 2
 

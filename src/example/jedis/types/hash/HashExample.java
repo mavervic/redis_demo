@@ -1,4 +1,4 @@
-package example.jedis.types;
+package example.jedis.types.hash;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,34 +39,6 @@ public class HashExample {
 		Long res7 = jedis.hincrBy("bike:1", "price", -100);
 		System.out.println(res7); // 4972
 
-		cartExample(jedis);
-
 	}
 
-	/**
-	 * 簡易購物車的範例
-	 * 
-	 * @usageNotes 會員編號目前為寫死
-	 * @usageNotes HashMap 的 value 可以存 JSON 格式的字串，以儲存更多的資訊
-	 * @usageNotes 有可能要紀錄加入商品的時間，這樣網頁顯示時會依照加入時間排序顯示
-	 */
-	public static void cartExample(JedisPooled jedis) {
-		Map<String, String> stock = new HashMap<>();
-		stock.put("iphone", "10");
-		stock.put("mac", "1");
-		stock.put("watch", "2");
-
-		// 存進redis
-		long hset = jedis.hset("stock:member:01", stock);
-		System.out.println(hset); // 3
-
-		// 從redis取出來
-		Map<String, String> hgetAll = jedis.hgetAll("stock:member:01");
-		System.out.println(hgetAll); // {watch=2, iphone=10, mac=1}
-
-		// 序列化成JSON格式字串
-		Gson gson = new Gson();
-		String json = gson.toJson(hgetAll);
-		System.out.println(json); // {"watch":"2","iphone":"10","mac":"1"}
-	}
 }
