@@ -1,6 +1,10 @@
 package example.jedis.types.zset;
 
+import java.util.Date;
+import java.util.List;
+
 import redis.clients.jedis.JedisPooled;
+import redis.clients.jedis.resps.Tuple;
 import utils.RedisUtils;
 
 public class RateLimiter {
@@ -22,13 +26,19 @@ public class RateLimiter {
 		long currentTimestamp = System.currentTimeMillis() / 1000;
 		String key = "rate_limiter:" + userId;
 
-		// 移除過期的操作記錄
+		// 使用滑動窗口，每次的操作皆會先移除過期的操作記錄
+		System.out.println("移除 " + new Date((currentTimestamp - windowSize) * 1000) + " 之前的操作紀錄");
 		jedis.zremrangeByScore(key, 0, currentTimestamp - windowSize);
 
 		// 計算當前時間窗口內的操作次數
 		long operationCount = jedis.zcount(key, currentTimestamp - windowSize, currentTimestamp);
+		System.out.println("近 " + windowSize + " 秒的操作次數為 " + operationCount);
 		if (operationCount >= limit) {
 			System.out.println("Rate limit exceeded for user: " + userId);
+			
+			List<Tuple> zrangeWithScores = jedis.zrangeWithScores(key, 0, 1);
+			long firstTimestamp = (long) zrangeWithScores.getFirst().getScore();
+			System.out.println("最近可操作時間為 " + new Date((firstTimestamp + windowSize) * 1000));
 			return false;
 		} else {
 			// 添加新的操作記錄
