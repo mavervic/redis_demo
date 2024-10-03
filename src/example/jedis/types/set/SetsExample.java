@@ -149,7 +149,7 @@ public class SetsExample {
 		 */
 		jedis.sadd("bikes:racing:france", "bike:1", "bike:2", "bike:3", "bike:4", "bike:5");
 
-		// spop 會從一個集合中隨機選擇一個元素，並確保同一個元素不會被選擇兩次。例如，可以用它來實現一個隨機抽獎系統。
+		// spop 會從一個集合中隨機移出一個元素，這確保了同一個元素不會被選擇兩次。例如，可以用它來實現一個隨機抽獎系統。
 		String res21 = jedis.spop("bikes:racing:france");
 		System.out.println(res21); // >>> bike:???
 
