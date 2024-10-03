@@ -42,6 +42,25 @@ public class HashExample {
 		Long res7 = jedis.hincrBy("bike:1", "price", -100);
 		System.out.println(res7); // 4972
 
+		/**
+		 * 這邊是一個 hincrBy 的範例，用來記錄腳踏車的騎乘次數、車禍次數、車主更換次數
+		 */
+		Long res8 = jedis.hincrBy("bike:1:stats", "rides", 1);
+		System.out.println(res8); // 1
+		Long res9 = jedis.hincrBy("bike:1:stats", "rides", 1);
+		System.out.println(res9); // 2
+		Long res10 = jedis.hincrBy("bike:1:stats", "rides", 1);
+		System.out.println(res10); // 3
+		Long res11 = jedis.hincrBy("bike:1:stats", "crashes", 1);
+		System.out.println(res11); // 1
+		Long res12 = jedis.hincrBy("bike:1:stats", "owners", 1);
+		System.out.println(res12); // 1
+		String res13 = jedis.hget("bike:1:stats", "rides");
+		System.out.println(res13); // 3
+		// 一次 GET 多個 filed 的範例
+		List<String> res14 = jedis.hmget("bike:1:stats", "crashes", "owners");
+		System.out.println(res14); // [1, 1]
+
 	}
 
 }
