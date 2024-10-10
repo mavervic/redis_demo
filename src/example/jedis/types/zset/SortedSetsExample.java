@@ -116,7 +116,7 @@ public class SortedSetsExample {
 		 * 
 		 * 第三個參數表示搜尋終點條件
 		 * 
-		 * `[` 表示包含、`(` 表示不包含
+		 * @usageNotes 參考數學領域的區間表示法: `[` 表示包含、`(` 表示不包含
 		 */
 		List<String> res15 = jedis.zrangeByLex("lexicographical_scores", "[A", "[c");
 		System.out.println(res15); // >>> [A, a, aAa, b, c]
