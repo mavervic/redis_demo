@@ -1,18 +1,16 @@
 package example.json;
 
-import java.io.Serializable;
+import java.util.Date;
 
-public class Person implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	public Person(String name, Integer age) {
-		super();
-		this.name = name;
-		this.age = age;
-	}
+public class Person {
 
 	private String name;
+
 	private Integer age;
+
+	private Date birthDate;
+
+	private String address;
 
 	public String getName() {
 		return name;
@@ -22,7 +20,7 @@ public class Person implements Serializable {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
@@ -30,8 +28,19 @@ public class Person implements Serializable {
 		this.age = age;
 	}
 
-	@Override
-	public String toString() {
-		return "Person [name=" + name + ", age=" + age + "]";
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
