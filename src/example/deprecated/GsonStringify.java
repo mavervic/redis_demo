@@ -1,11 +1,13 @@
-package example.json;
+package example.deprecated;
 
 import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
 
-public class JsonStringify {
+import utils.MockDataUtils;
+
+public class GsonStringify {
 	
 
 	public static void main(String[] args) {

@@ -5,9 +5,9 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import example.json.MockDataUtils;
 import redis.clients.jedis.JedisPooled;
 import redis.clients.jedis.json.Path2;
+import utils.MockDataUtils;
 import utils.RedisUtils;
 
 /**

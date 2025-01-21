@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import example.json.MockDataUtils;
 import redis.clients.jedis.JedisPooled;
+import utils.MockDataUtils;
 import utils.RedisUtils;
 
 public class BasicInsertExample {

@@ -1,7 +1,9 @@
-package example.json;
+package example.deprecated;
 
 import java.util.List;
 import java.util.Map;
+
+import utils.MockDataUtils;
 
 public class JavaStringify {
 
